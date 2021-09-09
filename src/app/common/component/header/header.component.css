@@ -1,0 +1,32 @@
+#menu-toggle {
+  text-decoration: none;
+  float: left;
+  color: #fff;
+  padding-right: 15px;
+}
+
+.navbar{
+/* background-color: rgb(48, 134, 173); */
+/* background-color: rgba(0, 0, 255, 0.664); */
+background-color:#1761a5e0;
+}
+
+.navbar a{
+color: floralwhite;
+
+
+}
+.navbar a:hover{
+color:  #0061ff;
+}
+.navbar .navbar-brand a:hover{
+color: floralwhite; 
+}
+
+@media (max-width:767px) {
+  
+  #menu-toggle {
+    display: inline-block;
+  }
+  
+}

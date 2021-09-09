@@ -1,0 +1,20 @@
+applications:
+- path: .
+  memory: 1024M
+  instances: 1
+  # domain: w3ibm.mybluemix.net
+  # name: bretreport
+  command: node server.js
+  env:
+    APP_ENV: prod
+    client_id: NGU5MzM5ZTktMzJiNS00
+    client_secret: MTcyNmIyZGQtNGE3MS00
+    authorization_url:  https://w3id.sso.ibm.com/isam/oidc/endpoint/amapp-runtime-oidcidp/authorize
+    token_url: https://w3id.sso.ibm.com/isam/oidc/endpoint/amapp-runtime-oidcidp/token
+    issuer_id: https://w3id.sso.ibm.com/isam
+    callback_url: https://bretreport.w3ibm.mybluemix.net/auth/sso/callback
+    cert: /oidc_w3id_prod.cer
+    NEW_RELIC_APP_NAME: bretreport
+    NEW_RELIC_LICENSE_KEY: b86e105f4fecf1b216140d806298cc918460eb48
+    bg_app_access: bretreports_users
+    connectionString : Driver={DB2};DATABASE=RAFTPRD;PROTOCOL=TCPIP;UID=wwbpcops;PWD=prodBrettoolpassword@2020;HOSTNAME=cio-sg-01.integration.ibmcloud.com;port=15782;Security=SSL;SSLServerCertificate=ibmca.pem

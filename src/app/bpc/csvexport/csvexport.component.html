@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="pull-right">
+          <input (keyup)="onQuickFilterChanged($event)" id="quickFilterInput" [(ngModel)]="searchValue" style="width: 250px"
+            class="form-control" placeholder="Search value" />
+        </div>
+        <button type="button" class="btn btn-primary changedfont" (click)="exportToCSV()">Export to CSV &nbsp;<i class="fas fa-file-csv" style="font-size: 15px; color:floralwhite"></i></button>
+        <button type="button" class="btn btn-primary changedfont" (click)="exportToCSVSelected()">Export Selected Records &nbsp;<i class="fas fa-file-csv" style="font-size: 15px; color:floralwhite"></i></button>
+        <button type="button" class="btn btn-primary changedfont" (click)="deselectAll()" >Deselect All</button>
+        <button type="button" class="btn btn-primary changedfont" (click)="ResetAllFilters()" >Reset All Filters</button>
+      </div>
+      <div class="panel-body">
+        <ag-grid-angular #agGrid id="myGrid" style="width: 100%; height: 30pc;" class="ag-theme-blue" [enableSorting]="true"
+          [enableFilter]="true" [rowData]="rowData" [columnDefs]="columnDefs" [enableColResize]="true"
+          [suppressRowTransform]="true" [pagination]="true" [paginationPageSize]=100 (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)" [suppressRowClickSelection]= "true" [suppressCellSelection]="true"
+          [enableStatusBar]="true" rowSelection="multiple">
+        </ag-grid-angular>
+      </div>
+    </div>
+  </div>
+</div>
+

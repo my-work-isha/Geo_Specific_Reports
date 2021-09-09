@@ -1,0 +1,21 @@
+applications:
+- path: .
+  memory: 1024M
+  instances: 1
+  # domain: w3ibm.mybluemix.net
+  # name: bretreport-tst
+  command: node server.js
+  # health-check-type: process
+  env:
+    APP_ENV: test
+    client_id: MzQwMTI3MzMtZmVmNy00
+    client_secret: ODAzMzEyOTEtYjkxZC00
+    authorization_url: https://w3id.alpha.sso.ibm.com/isam/oidc/endpoint/amapp-runtime-oidcidp/authorize
+    token_url: https://w3id.alpha.sso.ibm.com/isam/oidc/endpoint/amapp-runtime-oidcidp/token
+    issuer_id: https://w3id.alpha.sso.ibm.com/isam
+    callback_url: https://bretreport-tst.w3ibm.mybluemix.net/auth/sso/callback
+    cert: /oidc_w3id_staging.cer
+    NEW_RELIC_APP_NAME: bretreport-tst
+    NEW_RELIC_LICENSE_KEY: b86e105f4fecf1b216140d806298cc918460eb48
+    bg_app_access: test_bretreports_users
+    connectionString : Driver={DB2};DATABASE=RAFTPRD;PROTOCOL=TCPIP;UID=vappajod;PWD=bretnewpasswordQ3@2020;HOSTNAME=cio-sg-01.integration.ibmcloud.com;port=15031;Security=SSL;SSLServerCertificate=ibmca.pem

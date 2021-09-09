@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <form action="searchBtn('clickAction')">
+          <div class="pull-right">
+            <input type="text" (input)="refreshData()" pInputText size="25" [(ngModel)]="searchValue" 
+              id="searchValue" name="searchValue" placeholder="Search value">
+            <button type="submit" class="btn btn-primary" id="searchBtn" (click)="searchBtn('clickAction')">Search</button>
+          </div>
+          <button *ngIf="isAdmin" type="button" class="btn btn-primary" (click)="CreateNewRecord()">Create new record</button>
+          <button type="button" class="btn btn-info btn-sm" (click)="expandAll()" title="Expand all">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+          <button type="button" class="btn btn-info btn-sm" (click)="collapseAll()" title="Collapse all">
+            <span class="glyphicon glyphicon-minus"></span>
+          </button>
+        </form>
+      </div>
+
+      <div class="panel-body table-responsive">
+
+        <!--bystateprovince view -->
+        <div *ngIf="geo=='bystateprovince'">
+          <ay-treeTable [value]="nodes.data" selectionMode="single" [(selection)]="selectedRows" (onNodeSelect)="nodeSelect($event)"
+            [tableStyle]="{'table-layout': 'fixed', 'display': 'block', 'height': '400px', 'overflow-x': 'scroll', 'overflow-y': 'scroll'}" 
+            [rows]="100" [paginator]="true">
+            <ay-column field="ST_ZIP" header="State/Province" [style]="{'width':'220px'}">
+              <ng-template let-col let-node="rowData" pTemplate="body">
+                <span>{{node.data[col.field]}}</span>
+              </ng-template>
+            </ay-column>
+            <ay-column field="City" header="City" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="isocountry" header="Country" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="BUS_LEGAL_" header="Bus Legal" [style]="{'width':'300px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="Name" header="Name" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="kwchannel" header="Source" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="REFERENCE" header="Reference" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="contact" header="Contact" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="nmauthor" header="Created By" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="dtcreated" header="Date Created" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+          </ay-treeTable>
+        </div>
+
+        <!--BySourceChannel view -->
+        <div *ngIf="geo=='BySourceChannel'">
+          <ay-treeTable [value]="nodes.data" selectionMode="single" [(selection)]="selectedRows" (onNodeSelect)="nodeSelect($event)"
+            [tableStyle]="{'table-layout': 'fixed', 'display': 'block', 'height': '400px', 'overflow-x': 'scroll', 'overflow-y': 'scroll'}" 
+            [rows]="100" [paginator]="true">
+            <ay-column field="kwchannel" header="Source" [style]="{'width':'220px'}">
+              <ng-template let-col let-node="rowData" pTemplate="body">
+                <span>{{node.data[col.field]}}</span>
+              </ng-template>
+            </ay-column>
+            <ay-column field="BUS_LEGAL_" header="Bus_Legal" [style]="{'width':'300px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="Name" header="Name" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="City" header="City" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="ST_ZIP" header="St/Province" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="zip" header="Zip/Postal Code" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="isocountry" header="Country" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="REFERENCE" header="Reference" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="contact" header="Contact" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="nmauthor" header="Created By" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="dtcreated" header="Date Created" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+          </ay-treeTable>
+        </div>
+
+        <!--ByBusinesslegalname view -->
+        <div *ngIf="geo=='bybusinesslegalname'">
+          <ay-treeTable [value]="nodes.data" selectionMode="single" [(selection)]="selectedRows" (onNodeSelect)="nodeSelect($event)"
+            [tableStyle]="{'table-layout': 'fixed', 'display': 'block', 'height': '400px', 'overflow-x': 'scroll', 'overflow-y': 'scroll'}" 
+            [rows]="100" [paginator]="true">
+            <ay-column field="BUS_LEGAL_" header="Bus_Legal" [style]="{'width':'300px'}">
+              <ng-template let-col let-node="rowData" pTemplate="body">
+                <span>{{node.data[col.field]}}</span>
+              </ng-template>
+            </ay-column>
+            <ay-column field="Name" header="Name" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="kwchannel" header="Source" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="City" header="City" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="ST_ZIP" header="St/Province" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="zip" header="Zip/Postal Code" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="isocountry" header="Country" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="contact" header="Contact" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="nmauthor" header="Created By" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="dtcreated" header="Date Created" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="REFERENCE" header="Reference" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+          </ay-treeTable>
+        </div>
+
+        <!-- By Source/Business Legal Name view -->
+        <div *ngIf="geo=='bysrcbuslegalname'">
+          <ay-treeTable [value]="nodes.data" selectionMode="single" [(selection)]="selectedRows" (onNodeSelect)="nodeSelect($event)"
+            [tableStyle]="{'table-layout': 'fixed', 'display': 'block', 'height': '400px', 'overflow-x': 'scroll', 'overflow-y': 'scroll'}" 
+            [rows]="100" [paginator]="true">
+            <ay-column field="kwchannel" header="Source" [style]="{'width':'220px'}">
+              <ng-template let-col let-node="rowData" pTemplate="body">
+                <span>{{node.data[col.field]}}</span>
+              </ng-template>
+            </ay-column>
+            <ay-column field="BUS_LEGAL_" header="Bus_Legal" [style]="{'width':'300px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="Name" header="Name" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="City" header="City" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="ST_ZIP" header="St/Province" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="zip" header="Zip/Postal Code" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="isocountry" header="Country" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="contact" header="Contact" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="nmauthor" header="Created By" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="dtcreated" header="Date Created" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+            <ay-column field="REFERENCE" header="Reference" [style]="{'width':'220px', 'text-align': 'center'}"></ay-column>
+          </ay-treeTable>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

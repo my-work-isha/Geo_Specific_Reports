@@ -1,0 +1,25 @@
+.ag-theme-balham .sev-level-1 {
+    background-color: lightgreen !important;
+}
+
+.ag-theme-balham .sev-level-2 {
+    background-color: lightblue !important;
+}
+
+.ag-theme-balham .sev-level-3 {
+    background-color: yellow !important;
+}
+
+.ag-theme-balham .sev-level-4 {
+    background-color: orange !important;
+}
+
+.ag-theme-balham .sev-level-5 {
+    background-color: red !important;
+    color: white;
+}
+
+.ag-theme-balham .sev-level-term {
+    background-color: black !important;
+    color: white;
+}
